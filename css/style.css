@@ -1,0 +1,22 @@
+@font-face {
+  font-family: "DOS",monospace;
+  src: url("ttf/dos.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    border: 0;
+}
+
+html, body {
+  background: black;
+}
+
+center {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 0;
+}
