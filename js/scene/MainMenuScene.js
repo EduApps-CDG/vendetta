@@ -25,7 +25,8 @@ function MainMenuScene() {
           pressStart_on = true;
         }
         if (start_just_pressed) {
-          start_speed = 250;
+          Transition(1,new MenuScene());
+          start_just_pressed = false;
         }
       },start_speed),
       loop:true
@@ -46,20 +47,15 @@ function MainMenuScene() {
     pressStart.position.y = 250;
     
     game.stage.addChild(background,pressStart,title);
-    
-    if (gamepad.getGamePad(0).start_pressed) {
-      
-    }
   }
   
   this.destroy = function() {
     
   }
   
-  this.keyDown(e) {
-    if(e.start_pressed) {
+  this.keyDown = function(e) {
+    if(get_gamepad[0].start_pressed) {
       start_just_pressed = true;
-      alert("yes");
     }
   }
 }

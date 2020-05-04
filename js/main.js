@@ -1,5 +1,6 @@
 let game,actual_scene = 1;
-let container, gamepad;
+let container
+var gamepad;
 
 window.onload = function() {
   $.when(
@@ -7,6 +8,7 @@ window.onload = function() {
     $.getScript("js/core/Gamepad.js"),
     $.getScript("js/core/Transition.js"),
     $.getScript("js/scene/MainMenuScene.js"),
+    $.getScript("js/scene/MenuScene.js"),
     $.Deferred(function(deferred) {
       $(deferred.resolve);
     })
@@ -55,9 +57,11 @@ function setup() {
 }
 
 function startScene(scene) {
+  game.renderer.backgroundColor = 0x000000;
   scene.create();
   actual_scene = scene;
-  window.addEventListener('e-gamepadevent', scene.keyDown, false);
+  window.addEventListener('keydown',actual_scene.keyDown, false);
+  window.addEventListener('keyup',actual_scene.keyUp, false);
 }
 
 function killScene() {
@@ -69,9 +73,10 @@ function killScene() {
     
   } else {
     actual_scene.destroy();
-    window.removeEventListener('e-gamepadevent', actual_scene.keyDown, false);
-    for (var i = stage.children.length - 1; i >= 0; i--) {
-      stage.removeChild(stage.children[i]);
+    window.removeEventListener('keydown', actual_scene.keyDown, false);
+    window.removeEventListener('keyup', actual_scene.keyDown, false);
+    for (var i = game.stage.children.length - 1; i >= 0; i--) {
+      game.stage.removeChild(game.stage.children[i]);
     }
     actual_scene = undefined;
   }

@@ -3,6 +3,7 @@ function Transition(time,scene) {
   screenFadeContainer.scale.x = screenFadeContainer.scale.y = 1;
   game.stage.addChild(screenFadeContainer);
   var fullSceenCover = new rectangle(0, 0, 800, 420, 0x000000, 0xFFFFFF, 0 );
+  var t = time / 2;
   fullSceenCover.alpha = 0.00;
   screenFadeContainer.addChild(fullSceenCover);
   addOne();
@@ -20,7 +21,7 @@ function Transition(time,scene) {
         removeOne();
         startScene(scene);
       }
-    }, time / 2);
+    }, t);
   }
   
   function removeOne() {
@@ -29,7 +30,7 @@ function Transition(time,scene) {
       if (fullSceenCover.alpha != 0) {
         removeOne();
       }
-    }, time / 2);
+    }, t);
   }
   
   function rectangle( x, y, width, height, backgroundColor, borderColor, borderWidth ) {

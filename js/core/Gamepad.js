@@ -1,119 +1,62 @@
-function GamePad() {
-  this.keys = {
-    A: 0x01,
-    B: 0x02,
-    X: 0x03,
-    Y: 0x04,
-    
-    LB: 0x05,
-    LT: 0x06,
-    RB: 0x07,
-    RT: 0x08,
-    LS: 0x09,
-    RS: 0x0A,
-    
-    DPAD_UP: 0x0B,
-    DPAD_DOWN: 0x0C,
-    DPAD_LEFT: 0x0D,
-    DPAD_RIGHT: 0x0E,
-    
-    LS_UP: 0x0F,
-    LS_DOWN: 0x10,
-    LS_LEFT: 0x11,
-    LS_RIGHT: 0x12,
-    LS_CENTER: 0x13,
-    
-    START: 0x14,
-    SELECT: 0x15
-  };
-  let k = 0x00;
-  let get_gamepad = [
-    {
-      connected: false,
-      model: "N/a",
-      has_connection: false,
-      
-      has_a: false,
-      has_b: false,
-      has_x: false,
-      has_y: false,
-      has_lb: false,
-      has_lt: false,
-      has_ls: false,
-      has_rb: false,
-      has_rt: false,
-      has_rs: false,
-      has_dpad: false,
-      has_start: false,
-      has_select: false,
-      
-      a_pressed: false,
-      b_pressed: false,
-      x_pressed: false,
-      y_pressed: false,
-      
-      lb_pressed: false,
-      lt_pressed: false,
-      lt_pressure: 0,
-      
-      rb_pressed: false,
-      rt_pressed: false,
-      rt_pressure: 0,
-      
-      dpad_up_pressed: false,
-      dpad_down_pressed: false,
-      dpad_left_pressed: false,
-      dpad_right_pressed: false,
-      
-      ls_pressed: false,
-      ls_up_pressed: false,
-      ls_down_pressed: false,
-      ls_left_pressed: false,
-      ls_right_pressed: false,
-      
-      rs_pressed: false,
-      rs_up_pressed: false,
-      rs_down_pressed: false,
-      rs_left_pressed: false,
-      rs_right_pressed: false,
-      
-      start_pressed: false,
-      select_pressed: false,
-      center_pressed: false
-    },
-    {},
-    {},
-    {}
+var get_gamepad = [
+  {
+    connected: false,
+    model: "N/a",
+    has_connection: false,
+
+    has_a: false,
+    has_b: false,
+    has_x: false,
+    has_y: false,
+    has_lb: false,
+    has_lt: false,
+    has_ls: false,
+    has_rb: false,
+    has_rt: false,
+    has_rs: false,
+    has_dpad: false,
+    has_start: false,
+    has_select: false,
+
+    a_pressed: false,
+    b_pressed: false,
+    x_pressed: false,
+    y_pressed: false,
+
+    lb_pressed: false,
+    lt_pressed: false,
+    lt_pressure: 0,
+
+    rb_pressed: false,
+    rt_pressed: false,
+    rt_pressure: 0,
+
+    dpad_up_pressed: false,
+    dpad_down_pressed: false,
+    dpad_left_pressed: false,
+    dpad_right_pressed: false,
+
+    ls_pressed: false,
+    ls_up_pressed: false,
+    ls_down_pressed: false,
+    ls_left_pressed: false,
+    ls_right_pressed: false,
+
+    rs_pressed: false,
+    rs_up_pressed: false,
+    rs_down_pressed: false,
+    rs_left_pressed: false,
+    rs_right_pressed: false,
+
+    start_pressed: false,
+    select_pressed: false,
+    center_pressed: false
+    }
   ];
-  let event = new CustomEvent('e-gamepadevent', {
-    a_pressed: get_gamepad[0].a_pressed,
-    b_pressed: get_gamepad[0].b_pressed,
-    x_pressed: get_gamepad[0].x_pressed,
-    y_pressed: get_gamepad[0].y_pressed,
-    
-    lb_pressed: get_gamepad[0].lb_pressed,
-    lt_pressed: get_gamepad[0].lt_pressed,
-    ls_pressed: get_gamepad[0].ls_pressed,
-    rb_pressed: get_gamepad[0].lb_pressed,
-    rt_pressed: get_gamepad[0].lt_pressed,
-    rs_pressed: get_gamepad[0].ls_pressed,
-    
-    start_pressed: get_gamepad[0].start_pressed,
-    select_pressed: get_gamepad[0].select_pressed,
-    
-    ls_up_pressed: get_gamepad[0].ls_up_pressed,
-    ls_down_pressed: get_gamepad[0].ls_down_pressed,
-    ls_left_pressed: get_gamepad[0].ls_left_pressed,
-    ls_right_pressed: get_gamepad[0].ls_right_pressed,
-    
-    rs_up_pressed: get_gamepad[0].rs_up_pressed,
-    rs_down_pressed: get_gamepad[0].rs_down_pressed,
-    rs_left_pressed: get_gamepad[0].rs_left_pressed,
-    rs_right_pressed: get_gamepad[0].rs_right_pressed,
-  });
-  
-  window.addEventListener('e-gamepadevent', function (e) {
-  }, false);
+
+function GamePad() {
+  //let event = new CustomEvent('e-gamepaddown',{ detail:get_gamepad[0] });
+  //let event2 = new CustomEvent('e-gamepaup',{ detail:get_gamepad[0] });
   
   window.addEventListener("gamepadconnected", function(e) {
     console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
@@ -157,7 +100,7 @@ function GamePad() {
   });
   
   window.addEventListener("keydown",function(e) {
-    if (!get_gamepad[0].connected) {
+    if (!this.get_gamepad[0].connected) {
       get_gamepad[0].model = "Keyboard";
       get_gamepad[0].connected = true;
       get_gamepad[0].has_connection = true;
@@ -240,7 +183,7 @@ function GamePad() {
       default:
         break;
     }
-    window.dispatchEvent(event);
+    //window.dispatchEvent(event);
   });
   
   window.addEventListener("keyup", function(e) {
@@ -304,10 +247,8 @@ function GamePad() {
       default:
         break;
     }
-    window.dispatchEvent(event);
+    //window.dispatchEvent(event);
   });
   
-  this.getGamepad = function(player) {
-    return get_gamepad[player];
-  }
+  this.getGamepad = get_gamepad;
 }

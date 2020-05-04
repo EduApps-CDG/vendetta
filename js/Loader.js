@@ -20,6 +20,7 @@ var Loader = {
           "img/gui/title.candidate3.png",
           "img/gui/title.candidate4.png",
           "img/gui/title.candidate5.png",
+          "img/gui/menu.png",
           "img/rpgmaker.png"
         ]).on("progress", Loader.progress).load(setup);
   },
