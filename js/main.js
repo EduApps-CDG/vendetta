@@ -1,5 +1,5 @@
 let game,actual_scene = 1;
-let container;
+let container, gamepad;
 
 window.onload = function() {
   $.when(
@@ -29,7 +29,7 @@ function main() {
   
   document.getElementById("wrapper").appendChild(game.view);
   
-  GamePad();
+  gamepad = new GamePad();
   //load all resources
   Loader.preload();
 }
@@ -57,6 +57,7 @@ function setup() {
 function startScene(scene) {
   scene.create();
   actual_scene = scene;
+  window.addEventListener('e-gamepadevent', scene.keyDown, false);
 }
 
 function killScene() {
@@ -68,6 +69,7 @@ function killScene() {
     
   } else {
     actual_scene.destroy();
+    window.removeEventListener('e-gamepadevent', actual_scene.keyDown, false);
     for (var i = stage.children.length - 1; i >= 0; i--) {
       stage.removeChild(stage.children[i]);
     }

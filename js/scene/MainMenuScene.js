@@ -1,9 +1,11 @@
-var MainMenuScene = function() {
+function MainMenuScene() {
   let selection = 0;
   let background;
   let title;
   let pressStart;
   let pressStart_on = false;
+  let start_speed = 500;
+  let start_just_pressed = false;
   
   this.create = function() {
    // var texture2 = new PIXI.Texture(landscapeTexture, new PIXI.Rectangle(0, 100, 960, 50));
@@ -22,7 +24,10 @@ var MainMenuScene = function() {
           pressStart.alpha = 1;
           pressStart_on = true;
         }
-      },500),
+        if (start_just_pressed) {
+          start_speed = 250;
+        }
+      },start_speed),
       loop:true
     }
     
@@ -41,9 +46,20 @@ var MainMenuScene = function() {
     pressStart.position.y = 250;
     
     game.stage.addChild(background,pressStart,title);
+    
+    if (gamepad.getGamePad(0).start_pressed) {
+      
+    }
   }
   
   this.destroy = function() {
     
+  }
+  
+  this.keyDown(e) {
+    if(e.start_pressed) {
+      start_just_pressed = true;
+      alert("yes");
+    }
   }
 }
