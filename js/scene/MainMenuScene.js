@@ -3,7 +3,7 @@ var MainMenuScene = function() {
   let background;
   let title;
   let pressStart;
-  let pressStart_on = true;
+  let pressStart_on = false;
   
   this.create = function() {
    // var texture2 = new PIXI.Texture(landscapeTexture, new PIXI.Rectangle(0, 100, 960, 50));

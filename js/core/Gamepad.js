@@ -58,6 +58,10 @@ function GamePad() {
     {}
   ]
   
+  this.getGamepad = function(player) {
+    return get_gamepad[player];
+  }
+  
   window.addEventListener("gamepadconnected", function(e) {
     console.log("Gamepad connected at index %d: %s. %d buttons, %d axes.",
       e.gamepad.index, e.gamepad.id,
@@ -97,5 +101,154 @@ function GamePad() {
         });
       }
     },300000);
+  });
+  
+  window.addEventListener("keydown",function(e) {
+    if (!get_gamepad[0].connected) {
+      get_gamepad[0].model = "Keyboard";
+      get_gamepad[0].connected = true;
+      get_gamepad[0].has_connection = true;
+      get_gamepad[0].has_a = true;
+      get_gamepad[0].has_b = true;
+      get_gamepad[0].has_x = true;
+      get_gamepad[0].has_y = true;
+      get_gamepad[0].has_lb = true;
+      get_gamepad[0].has_ls = true;
+      get_gamepad[0].has_lt = true;
+      get_gamepad[0].has_rb = true;
+      get_gamepad[0].has_rs =false;
+      get_gamepad[0].has_lt = true;
+      get_gamepad[0].has_start = true;
+      get_gamepad[0].has_dpad = true;
+      get_gamepad[0].has_select = true;
+    }
+    
+    switch(e.key) {
+      case "Enter":
+        get_gamepad[0].start_pressed = true;
+        break;
+      case " ":
+        get_gamepad[0].select_pressed = true;
+        break;
+      case "w":
+        get_gamepad[0].ls_up_pressed = true;
+        get_gamepad[0].ls_down_pressed = false;
+        break;
+      case "s":
+        get_gamepad[0].ls_down_pressed = true;
+        get_gamepad[0].ls_up_pressed = false;
+        break;
+      case "a":
+        get_gamepad[0].ls_left_pressed = true;
+        get_gamepad[0].ls_right_pressed = false;
+        break;
+      case "d":
+        get_gamepad[0].ls_right_pressed = true;
+        get_gamepad[0].ls_left_pressed =false;
+        break;
+      case "h":
+        get_gamepad[0].a_pressed = true;
+        break;
+      case "y":
+        get_gamepad[0].x_pressed = true;
+        break;
+      case "u":
+        get_gamepad[0].y_pressed = true;
+        break;
+      case "j":
+        get_gamepad[0].b_pressed = true;
+        break;
+      case "i":
+        get_gamepad[0].lb_pressed = true;
+        break;
+      case "o":
+        get_gamepad[0].lt_pressed = true;
+        get_gamepad[0].lt_pressure = 100;
+        break;
+       case "k":
+        get_gamepad[0].rb_pressed = true;
+        break;
+      case "l":
+        get_gamepad[0].lt_pressed = true;
+        get_gamepad[0].lt_pressure = 100;
+        break;
+      case "ArrowUp":
+        get_gamepad[0].dpad_up_pressed = true;
+        break;
+      case "ArrowDown":
+        get_gamepad[0].dpad_down_pressed = true;
+        break;
+      case "ArrowLeft":
+        get_gamepad[0].dpad_left_pressed = true;
+        break;
+      case "ArrowRight":
+        get_gamepad[0].dpad_right_pressed = true;
+        break;
+      default:
+        break;
+    }
+  });
+  
+  window.addEventListener("keyup", function(e) {
+    switch (e.key) {
+      case "Enter":
+        get_gamepad[0].start_pressed = false;
+        break;
+      case " ":
+        get_gamepad[0].select_pressed = false;
+        break;
+      case "w":
+        get_gamepad[0].ls_up_pressed = false;
+        break;
+      case "s":
+        get_gamepad[0].ls_down_pressed = false;
+        break;
+      case "a":
+        get_gamepad[0].ls_left_pressed = false;
+        break;
+      case "d":
+        get_gamepad[0].ls_right_pressed = false;
+        break;
+      case "h":
+        get_gamepad[0].a_pressed = false;
+        break;
+      case "y":
+        get_gamepad[0].x_pressed = false;
+        break;
+      case "u":
+        get_gamepad[0].y_pressed = false;
+        break;
+      case "j":
+        get_gamepad[0].b_pressed = false;
+        break;
+      case "i":
+        get_gamepad[0].lb_pressed = false;
+        break;
+      case "o":
+        get_gamepad[0].lt_pressed = false;
+        get_gamepad[0].lt_pressure = 000;
+        break;
+      case "k":
+        get_gamepad[0].rb_pressed = false;
+        break;
+      case "l":
+        get_gamepad[0].lt_pressed = false;
+        get_gamepad[0].lt_pressure = 000;
+        break;
+      case "ArrowUp":
+        get_gamepad[0].dpad_up_pressed = false;
+        break;
+      case "ArrowDown":
+        get_gamepad[0].dpad_down_pressed = false;
+        break;
+      case "ArrowLeft":
+        get_gamepad[0].dpad_left_pressed = false;
+        break;
+      case "ArrowRight":
+        get_gamepad[0].dpad_right_pressed = false;
+        break;
+      default:
+        break;
+    }
   });
 }
