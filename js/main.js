@@ -6,9 +6,15 @@ window.onload = function() {
   $.when(
     $.getScript("js/Loader.js"),
     $.getScript("js/core/Gamepad.js"),
+    $.getScript("js/core/Save.js"),
     $.getScript("js/core/Transition.js"),
+    $.getScript("js/core/Dialog.js"),
+    
     $.getScript("js/scene/MainMenuScene.js"),
     $.getScript("js/scene/MenuScene.js"),
+    $.getScript("js/scene/Prologue.js"),
+    
+    $.getScript("js/game/History.js"),
     $.Deferred(function(deferred) {
       $(deferred.resolve);
     })

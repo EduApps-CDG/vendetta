@@ -21,6 +21,9 @@ var Loader = {
           "img/gui/title.candidate4.png",
           "img/gui/title.candidate5.png",
           "img/gui/menu.png",
+          "img/gui/selection.png",
+          "img/font/font.fnt",
+          "img/font/emoji.fnt",
           "img/rpgmaker.png"
         ]).on("progress", Loader.progress).load(setup);
   },
